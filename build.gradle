@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "1.2.4"
+}
+
+group 'fr.starype.starypebot'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.1stleg:jnativehook:2.1.0'
+    compile 'org.slf4j:slf4j-api:1.8.0-beta2'
+    runtime 'org.apache.logging.log4j:log4j-slf4j-impl:2.11.0'
+
+    compile 'net.dv8tion:JDA:3.6.0_376'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'fr.lolilolulolilol.discordselfbot.LolilBot'
+    }
+}
