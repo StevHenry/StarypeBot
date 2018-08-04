@@ -40,7 +40,7 @@ public class StarypeBot {
 
         try {
             jda = new JDABuilder(AccountType.BOT).setToken(token).setCompressionEnabled(true)
-                    .setGame(Game.watching("é_è")).setAutoReconnect(true).setBulkDeleteSplittingEnabled(false)
+                    .setGame(Game.of(Game.GameType.DEFAULT, BotManager.DEFAULT_ACTIVITY)).setAutoReconnect(true).setBulkDeleteSplittingEnabled(false)
                     .addEventListener(new EventsManager()).buildBlocking();
             LOGGER.info("Bot connected !");
         } catch (LoginException | IllegalArgumentException | InterruptedException e) {

@@ -11,6 +11,12 @@ public @interface Command {
 
 	String name();
 	String[] aliases() default {};
-	String description() default "";
+	String description() default "No description set.";
+	boolean overpassBotState() default false;
+	Usage usage() default Usage.EVERYONE;
 
+	enum Usage {
+		EVERYONE,
+		MODERATORS;
+	}
 }

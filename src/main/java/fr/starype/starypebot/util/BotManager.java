@@ -2,6 +2,7 @@ package fr.starype.starypebot.util;
 
 import fr.starype.starypebot.StarypeBot;
 import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.entities.User;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +13,20 @@ public class BotManager {
 
     public static final String BOT_NAME = "StarypeBot";
     public static final String VERSION = "1.0";
+    public static final String EMAIL = "starype.official@gmail.com";
+    public static final String DONATION_URL = "https://paypal.me/starype";
+    public static final String WEBSITE_URL = "https://unknown";
+    public static final String DEFAULT_ACTIVITY = "type /help";
+
+    public static final int COMMANDS_PER_EMBED = 8;
+
+    private static User[] administrators = new User[2];
     public static String[] startArguments;
+
+    public static void updateAdministrators(){
+        administrators[0] = StarypeBot.getInstance().getJDA().getUserById(283268834708815873l);
+        administrators[1] = StarypeBot.getInstance().getJDA().getUserById(205048941451018242l);
+    }
 
 
     public static void shutdown() {
@@ -45,5 +59,9 @@ public class BotManager {
         final ProcessBuilder builder = new ProcessBuilder(command);
         builder.start();
         shutdown();
+    }
+
+    public static User[] getAdministrators(){
+        return administrators;
     }
 }

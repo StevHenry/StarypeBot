@@ -2,6 +2,8 @@ package fr.starype.starypebot.event;
 
 import fr.starype.starypebot.StarypeBot;
 import fr.starype.starypebot.command.system.CommandsManager;
+import fr.starype.starypebot.util.BotManager;
+import fr.starype.starypebot.util.BotState;
 import net.dv8tion.jda.core.events.Event;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -30,14 +32,16 @@ public class EventsManager implements EventListener {
             }
 
             manager = bot.getCommandsManager();
+            BotManager.updateAdministrators();
+            StarypeBot.LOGGER.debug("Bot initialized with " + manager.getCommands().size() + " commands !");
+            BotState.setState(BotState.ENABLED);
+
         }).start();
     }
 
     public void onMessage(MessageReceivedEvent e) {
-
-        if (e.getAuthor() == StarypeBot.getInstance().getJDA().getSelfUser() || manager == null){
+        if (e.getAuthor() == StarypeBot.getInstance().getJDA().getSelfUser() || manager == null)
             return;
-        }
 
         String msg = e.getMessage().getContentRaw();
         if (msg.startsWith(manager.getCommandTag())) {
